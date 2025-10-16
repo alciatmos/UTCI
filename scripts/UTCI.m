@@ -18,7 +18,7 @@ function Tutci = UTCI(Ta,MRT,wspd,rh)
 DT = max(min(MRT - Ta,-30),70);
 
 %Load the UTCI lookuptable
-UTCIf = load('UTCI.mat');
+UTCIf = load('UTCI_lut.mat');
 UTCIoffset = @(T,DT,wspd,rh) interpn(UTCIf.Tg,UTCIf.DTg,UTCIf.spdg,UTCIf.rhg,UTCIf.UTCIq,T,DT,wspd,rh);
 
 Tutci = Ta + UTCIoffset(Ta,DT,wspd,rh);
