@@ -2,6 +2,7 @@ Some scripts to estimate the Universal Thermal Climate Index (UTCI) following th
 
 
 UTCIdaily = UTCInwpdailydata(lon,lat,time,tas,wspd,hurs,rsds,rsus,rsdsdiff,rlds,rlus)
+
 %Estimate the mean daily UTCI from daily nwp data.
 %
 %Output
