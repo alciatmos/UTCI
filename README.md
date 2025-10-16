@@ -1,8 +1,8 @@
-# Universal Thermal Climate Index (UTCI) Scripts
+# Universal Thermal Climate Index (UTCI)
 
 Matlab Scripts to estimate the Universal Thermal Climate Index (UTCI) following the same methodology used in the ERA5 UTCI.
 
-## Main Functions
+## \scripts contents
 
 ### 1. `UTCIdaily = UTCInwpdailydata(lon, lat, time, tas, wspd, hurs, rsds, rsus, rsdsdiff, rlds, rlus)`
 Estimate the mean daily UTCI from daily NWP data.
@@ -58,25 +58,6 @@ Reference: Claudia Di Napoli, Robin J. Hogan, Florian Pappenberger (2020), "Mean
 
 ---
 
-## Matlab scripts for working with the Universal Thermal Index (UTCI)
-
-### 4. `Tutci = UTCI(Ta, MRT, wspd, rh)`
-UTCI estimated from the look-up tables (ESM-4)  
-Reference: Bröde, P., Fiala, D., Błażejczyk, K. et al. (2012), "Deriving the operational procedure for the Universal Thermal Climate Index (UTCI)."  
-[https://doi.org/10.1007/s00484-011-0454-1](https://doi.org/10.1007/s00484-011-0454-1)
-
-**Output:**  
-- `Tutci`: Universal Thermal Comfort Index, in °C
-
-**Inputs:**
-- `Ta`: temperature in °C (range: -50 °C to +50 °C)
-- `MRT`: mean radiant temperature (Tr) in °C
-- `wspd`: wind speed in m/s measured 10 m above ground level (0.5 m/s to 30.3 m/s)
-- `rh`: relative humidity in % (5% to 100%)
-
-**Note:** Lookup tables are in `UTCI.mat`.
-
----
 
 ### 5. `Tutci = UTCInwp(tas, wspd, hurs, rsds, rsus, costheta, rsdsdiff, rlds, rlus)`
 UTCI derived from variables typically found in NWP models.
@@ -101,6 +82,24 @@ UTCI derived from variables typically found in NWP models.
 
 ---
 
+### 4. `Tutci = UTCI(Ta, MRT, wspd, rh)`
+UTCI estimated from the look-up tables (ESM-4)  
+Reference: Bröde, P., Fiala, D., Błażejczyk, K. et al. (2012), "Deriving the operational procedure for the Universal Thermal Climate Index (UTCI)."  
+[https://doi.org/10.1007/s00484-011-0454-1](https://doi.org/10.1007/s00484-011-0454-1)
+
+**Output:**  
+- `Tutci`: Universal Thermal Comfort Index, in °C
+
+**Inputs:**
+- `Ta`: temperature in °C (range: -50 °C to +50 °C)
+- `MRT`: mean radiant temperature (Tr) in °C
+- `wspd`: wind speed in m/s measured 10 m above ground level (0.5 m/s to 30.3 m/s)
+- `rh`: relative humidity in % (5% to 100%)
+
+**Note:** Lookup tables are in `UTCI_lut.mat`.
+
+---
+
 ## Methodology
 
 Methodology for computing the UTCI is available in `UTCI.pptx` (contains slides on the equations being solved).
@@ -120,12 +119,12 @@ UTCI_cmpi6 = UTCInwpdailydata(__)
 ## Function Call Sequence
 
 ```
-UTCInwpdailydata() 
-  └─> calls SolarDay() 
+UTCInwpdailydata(__) 
+  └─> SolarDay(__) 
   └─> calculates costheta = costheta(latitude, H)
-  └─> calls UTCInwp() 
-        └─> calls MRT() 
-      └─> calls UTCI(__)
+  └─> calls UTCInwp(__) 
+        └─> calls MRT(__) 
+        └─> calls UTCI(__)
 ```
 
 ---
